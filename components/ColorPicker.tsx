@@ -1,53 +1,47 @@
 import { Flex, Stack, useColorMode } from '@chakra-ui/react'
 import ColorButton from './ColorButton'
-import { useEffect, useState } from 'react'
-
-const colors = [
-  'bg-red-600',
-  'bg-orange-600',
-  'bg-amber-400',
-  'bg-emerald-300',
-  'bg-green-500',
-  'bg-blue-950',
-  'bg-blue-700',
-  'bg-sky-300',
-  'bg-pink-300',
-  'bg-purple-600'
-]
-
-export default function ColorPicker() {
-  const [currentColor, setCurrentColor] = useState<string>('bg-red-600')
+import { colorList } from '@/utils/constants'
+export default function ColorPicker({
+  isFont = false,
+  colorSetter
+}: {
+  isFont?: boolean
+  colorSetter: (color: string) => void
+}) {
   const { colorMode } = useColorMode()
-  useEffect(() => {
-    console.log(currentColor)
-  }, [currentColor])
+
   return (
     <Stack
+      position='absolute'
+      top='120%'
+      left={0}
       spacing={2}
       className={`${
-        colorMode === 'light' ? 'bg-white' : 'bg-[#1a202c]'
-      } inline-block p-3 rounded-md`}
+        colorMode === 'light' ? 'bg-gray-100' : 'bg-[#1a202c]'
+      } inline-block p-3 rounded-md hover:shadow-red-200`}
     >
       <Flex gap={2}>
-        {colors.slice(0, 5).map((color) => (
+        {colorList.slice(0, 6).map(({ color, shadow }) => (
           <ColorButton
             key={color}
             action={() => {
-              setCurrentColor(color)
+              colorSetter(color)
             }}
             colorClass={color}
+            shadowClass={shadow}
           />
         ))}
       </Flex>
 
       <Flex gap={2}>
-        {colors.slice(5, 10).map((color) => (
+        {colorList.slice(5, 11).map(({ color, text, shadow }) => (
           <ColorButton
             key={color}
             action={() => {
-              setCurrentColor(color)
+              colorSetter(isFont ? text : color)
             }}
             colorClass={color}
+            shadowClass={shadow}
           />
         ))}
       </Flex>

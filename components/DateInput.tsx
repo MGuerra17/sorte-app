@@ -17,7 +17,7 @@ export default function DateInput({
   const [value, setValue] = useState<Date | null>(new Date())
 
   return (
-    <FormControl isInvalid={false} className='w-2/5'>
+    <FormControl isInvalid={false} className='w-full md:w-2/5'>
       <FormLabel>
         {titulo}
         {required ? <span className='text-red-600'> *</span> : ''}
@@ -27,7 +27,7 @@ export default function DateInput({
         onChange={(e) => {
           setValue(e.target.valueAsDate)
         }}
-        className='bg-transparent outline outline-1 outline-gray-200 p-[0.6rem] mt-[0.1rem] w-full rounded-lg focus:outline-green-500 focus:outline-2 focus:outline-none'
+        className='bg-transparent outline outline-1 outline-gray-200 py-[0.8rem] px-[0.3rem] md:p-[0.4rem] mt-[0.1rem] w-full rounded-lg focus:outline-green-500 focus:outline-2 focus:outline-none'
         type='date'
       />
 

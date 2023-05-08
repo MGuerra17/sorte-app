@@ -1,28 +1,26 @@
-import { Text } from '@chakra-ui/react'
-import { useState } from 'react'
-import Tippy from '@tippyjs/react'
+import { Box } from '@chakra-ui/react'
+import ColorPicker from './ColorPicker'
+import useColorPicker from '@/hooks/useColorPicker'
+import { type ReactNode } from 'react'
 
-export default function ColorPicker() {
-  const [show, setShow] = useState<boolean>(false)
+interface ColorInputProps {
+  icon: ReactNode
+  colorSetter: (color: string) => void
+}
+
+export default function ColorInput({ icon, colorSetter }: ColorInputProps) {
+  const { show, setShow, ref } = useColorPicker()
+
   return (
-    <div>
-      <Text
+    <Box ref={ref} display='inline-block' position='relative'>
+      <button
         onClick={() => {
           setShow(!show)
         }}
       >
-        Color
-      </Text>
-      <Tippy
-        visible={show}
-        content={<ColorPicker />}
-        placement='bottom-start'
-        onClickOutside={() => {
-          setShow(false)
-        }}
-      >
-        <button>My button</button>
-      </Tippy>
-    </div>
+        {icon}
+      </button>
+      {show ? <ColorPicker colorSetter={colorSetter} /> : null}
+    </Box>
   )
 }

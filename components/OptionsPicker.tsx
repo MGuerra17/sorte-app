@@ -35,6 +35,7 @@ export default function OptionsPicker({
       </FormLabel>
       <Select
         value={value}
+        isSearchable={false}
         styles={{
           control: (base, { isFocused }) => ({
             ...base,
@@ -43,21 +44,30 @@ export default function OptionsPicker({
             border: 'none',
             backgroundColor: colorMode === 'light' ? '#fff' : '#1a202c',
             color: colorMode === 'light' ? '#000' : '#fff',
-            padding: '0.5rem 0',
+            padding: '0.2rem 0',
             borderRadius: '0.5rem'
           }),
           menuList: (base, props) => ({
             ...base,
             backgroundColor: colorMode === 'light' ? '#fff' : '#1a202c'
           }),
+          option: (base, { isFocused, isSelected }) => ({
+            padding: '0.5rem',
+            backgroundColor: isFocused ? 'rgb(74,222,128,0.3)' : 'transparent'
+          }),
           multiValue: (base, { isFocused }) => ({
             ...base,
             padding: '0.3rem 0.5rem',
-            backgroundColor: 'rgb(74,222,128,0.2)'
+            backgroundColor: 'rgb(74,222,128,0.3)',
+            color: colorMode === 'light' ? '#000' : '#fff'
+          }),
+          multiValueLabel: (base, props) => ({
+            ...base,
+            color: colorMode === 'light' ? '#000' : '#fff'
           }),
           multiValueRemove: (base, { isFocused }) => ({
-            ...base,
-            backgroundColor: isFocused ? 'rgb(74,222,128,0.2)' : 'transparent'
+            color: colorMode === 'light' ? '#000' : '#fff',
+            backgroundColor: isFocused ? '#f3f3f3' : 'transparent'
           })
         }}
         isMulti={multi}

@@ -1,43 +1,35 @@
-'use client'
-
-import { FormControl, FormLabel, Input } from '@chakra-ui/react'
-import { useState } from 'react'
+import { Box, FormLabel, Input } from '@chakra-ui/react'
 
 interface TextInputProps {
   titulo: string
   placeholder: string
-  className?: string
+  value?: string
+  setter: (value: string) => void
   required?: boolean
-  errorMessage?: string
 }
 
 export default function TextInput({
   titulo,
   placeholder,
-  className,
-  required = false,
-  errorMessage
+  value = '',
+  setter,
+  required = false
 }: TextInputProps) {
-  const [value, setValue] = useState<string>('')
-
   return (
-    <FormControl isInvalid={false} className={className}>
+    <Box width='100%'>
       <FormLabel>
         {titulo}
         {required ? <span className='text-red-600'> *</span> : ''}
       </FormLabel>
       <Input
         focusBorderColor='green.400'
-        size='lg'
         placeholder={placeholder}
         type='text'
         value={value}
         onChange={(e) => {
-          setValue(e.target.value)
+          setter(e.target.value)
         }}
       />
-
-      {/* {false ? <FormErrorMessage>{errorMessage}</FormErrorMessage> : null} */}
-    </FormControl>
+    </Box>
   )
 }
