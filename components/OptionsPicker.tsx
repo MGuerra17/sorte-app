@@ -1,14 +1,6 @@
 import { FormControl, FormLabel, useColorMode } from '@chakra-ui/react'
 import { useState } from 'react'
-import Select, { type MultiValue } from 'react-select'
-
-const options = [
-  { value: 'nequi', label: 'Nequi' },
-  { value: 'bancolombia', label: 'Bancolombia' },
-  { value: 'daviplata', label: 'Daviplata' },
-  { value: 'paypal', label: 'Paypal' },
-  { value: 'efectivo', label: 'Efectivo' }
-]
+import Select, { type MultiValue, type SingleValue } from 'react-select'
 
 interface SelectOption {
   value: string
@@ -17,16 +9,22 @@ interface SelectOption {
 
 interface PaymentMethodsPickerProps {
   titulo: string
+  placeholder: string
+  options: SelectOption[]
   required?: boolean
+  multi?: boolean
   errorMessage?: string
 }
-
-export default function PaymentMethodsPicker({
+type Options = MultiValue<SelectOption> | SingleValue<SelectOption>
+export default function OptionsPicker({
   titulo,
+  placeholder,
+  options,
   required = false,
+  multi = false,
   errorMessage
 }: PaymentMethodsPickerProps) {
-  const [value, setValue] = useState<MultiValue<SelectOption>>([])
+  const [value, setValue] = useState<Options>([])
   const { colorMode } = useColorMode()
 
   return (
@@ -62,12 +60,12 @@ export default function PaymentMethodsPicker({
             backgroundColor: isFocused ? 'rgb(74,222,128,0.2)' : 'transparent'
           })
         }}
-        isMulti
+        isMulti={multi}
         options={options}
         onChange={(e) => {
           setValue(e)
         }}
-        placeholder='Select option'
+        placeholder={placeholder}
       />
 
       {/* {false ? <FormErrorMessage>{errorMessage}</FormErrorMessage> : null} */}
