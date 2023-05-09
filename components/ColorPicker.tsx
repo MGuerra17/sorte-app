@@ -18,30 +18,28 @@ export default function ColorPicker({
       spacing={2}
       className={`${
         colorMode === 'light' ? 'bg-gray-100' : 'bg-[#1a202c]'
-      } inline-block p-3 rounded-md hover:shadow-red-200`}
+      } inline-block p-3 rounded-md`}
     >
       <Flex gap={2}>
-        {colorList.slice(0, 6).map(({ color, shadow }) => (
+        {colorList.slice(0, 6).map((color) => (
           <ColorButton
             key={color}
             action={() => {
               colorSetter(color)
             }}
             colorClass={color}
-            shadowClass={shadow}
           />
         ))}
       </Flex>
 
       <Flex gap={2}>
-        {colorList.slice(5, 11).map(({ color, text, shadow }) => (
+        {colorList.slice(6, 12).map((color) => (
           <ColorButton
             key={color}
             action={() => {
-              colorSetter(isFont ? text : color)
+              colorSetter(isFont ? `text-${color}` : color)
             }}
             colorClass={color}
-            shadowClass={shadow}
           />
         ))}
       </Flex>

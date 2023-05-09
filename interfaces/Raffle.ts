@@ -7,7 +7,8 @@ export interface Raffle {
   phone?: string
   winCondition?: string
   responsible?: string
-  primaryColor?: string
-  secondaryColor?: string
-  textColor?: string
+  backgroundColor: string
+  primaryColor: string
+  textColor: string
+  numbersColor: string
 }

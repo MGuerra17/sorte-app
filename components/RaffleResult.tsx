@@ -1,14 +1,33 @@
 import { useRaffleStore } from '@/stores/raffleStore'
-import { Box } from '@chakra-ui/react'
+import { Box, Heading, Text } from '@chakra-ui/react'
+import { type RefObject } from 'react'
 
-export default function RaffleResult() {
-  const { title } = useRaffleStore()
+export default function RaffleResult({
+  resRef
+}: {
+  resRef: RefObject<HTMLDivElement>
+}) {
+  const {
+    title,
+    description,
+    price,
+    textColor,
+    backgroundColor,
+    primaryColor
+  } = useRaffleStore()
+
   return (
     <Box
-      backgroundColor='red'
-      className='w-2/3 md:w-[300px] lg:w-[400px] aspect-[4/6]'
+      ref={resRef}
+      rounded={10}
+      padding={5}
+      backgroundColor='white'
+      className={`w-3/4 max-w-lg aspect-[1/1.4142] mt-10 md:mt-0 shadow-lg text-${textColor} bg-${backgroundColor}`}
     >
-      {title}
+      <Heading>Titulo: {title}</Heading>
+      <Text>Descripcion: {description}</Text>
+      <Text>Precio: {price}</Text>
+      <Box width={30} height={30} className={`bg-${primaryColor}`} />
     </Box>
   )
 }

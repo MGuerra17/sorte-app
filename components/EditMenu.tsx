@@ -1,21 +1,24 @@
 import { Flex, useColorMode } from '@chakra-ui/react'
 import ColorInput from './ColorInput'
-import ColorIcon from './ColorIcon'
+import ColorIcon from './icons/ColorIcon'
 import { useRaffleStore } from '@/stores/raffleStore'
-import FontIcon from './FontIcon'
-import BackgroundIcon from './BackgroundIcon'
+import FontIcon from './icons/FontIcon'
+import BackgroundIcon from './icons/BackgroundIcon'
+import NumbersIcon from './icons/NumbersIcon'
 
 export default function EditMenu() {
   const {
     primaryColor,
-    secondaryColor,
+    backgroundColor,
     textColor,
+    numbersColor,
     setPrimaryColor,
-    setSecondaryColor,
-    setTextColor
+    setBackgroundColor,
+    setTextColor,
+    setNumbersColor
   } = useRaffleStore()
   const { colorMode } = useColorMode()
-  console.log({ primaryColor, secondaryColor, textColor })
+
   return (
     <Flex
       backgroundColor={colorMode === 'light' ? 'gray.200' : '#1e2634'}
@@ -29,12 +32,12 @@ export default function EditMenu() {
       <ColorInput
         icon={
           <BackgroundIcon
-            width={25}
-            height={25}
-            colorClassName={secondaryColor}
+            width={23}
+            height={23}
+            colorClassName={backgroundColor}
           />
         }
-        colorSetter={setSecondaryColor}
+        colorSetter={setBackgroundColor}
       />
       <ColorInput
         icon={
@@ -45,6 +48,12 @@ export default function EditMenu() {
       <ColorInput
         icon={<FontIcon width={25} height={25} colorClassName={textColor} />}
         colorSetter={setTextColor}
+      />
+      <ColorInput
+        icon={
+          <NumbersIcon width={25} height={25} colorClassName={numbersColor} />
+        }
+        colorSetter={setNumbersColor}
       />
     </Flex>
   )

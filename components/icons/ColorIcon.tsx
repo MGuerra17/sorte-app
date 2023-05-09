@@ -1,16 +1,11 @@
+import { type IconProps } from '@/interfaces/Icons'
 import { Box } from '@chakra-ui/react'
-
-interface SvgProps {
-  width: number
-  height: number
-  colorClassName?: string
-}
 
 export default function ColorIcon({
   width = 10,
   height = 10,
-  colorClassName = 'bg-blue-500'
-}: SvgProps) {
+  colorClassName = 'blue-700'
+}: IconProps) {
   return (
     <Box position='relative' paddingTop={1}>
       <svg
@@ -35,7 +30,7 @@ export default function ColorIcon({
         position='absolute'
         bottom={0}
         right={0}
-        className={colorClassName}
+        className={`bg-${colorClassName}`}
       />
     </Box>
   )

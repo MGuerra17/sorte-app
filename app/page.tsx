@@ -2,6 +2,7 @@
 
 import DarkModeToggler from '@/components/DarkModeToggler'
 import DateInput from '@/components/DateInput'
+import DownloadButton from '@/components/DownloadButton'
 import EditMenu from '@/components/EditMenu'
 import Logo from '@/components/Logo'
 import OptionsPicker from '@/components/OptionsPicker'
@@ -10,10 +11,13 @@ import ResultContainer from '@/components/ResultContainer'
 import TextInput from '@/components/TextInput'
 import { useRaffleStore } from '@/stores/raffleStore'
 import { paymentMethods } from '@/utils/constants'
-import { Box, Button, Center, Flex, Heading, Stack } from '@chakra-ui/react'
+import { Box, Center, Flex, Heading, Stack } from '@chakra-ui/react'
+import { createRef } from 'react'
 
 export default function Home() {
   const raffle = useRaffleStore()
+  const resultRef = createRef<HTMLDivElement>()
+
   return (
     <main className='w-full flex flex-wrap md:flex-nowrap min-h-screen'>
       <Stack
@@ -87,10 +91,10 @@ export default function Home() {
           marginTop={3}
         >
           <EditMenu />
-          <Button colorScheme='green'>Descargar</Button>
+          <DownloadButton resRef={resultRef} />
         </Flex>
         <Center className='flex-1'>
-          <RaffleResult />
+          <RaffleResult resRef={resultRef} />
         </Center>
       </ResultContainer>
     </main>

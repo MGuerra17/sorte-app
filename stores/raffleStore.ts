@@ -11,9 +11,10 @@ interface RaffleStore extends Raffle {
   setPhone: (phone: string) => void
   setWinCondition: (winCondition: string) => void
   setResponsible: (responsible: string) => void
+  setBackgroundColor: (backgroundColor: string) => void
   setPrimaryColor: (primaryColor: string) => void
-  setSecondaryColor: (secondaryColor: string) => void
   setTextColor: (textColor: string) => void
+  setNumbersColor: (numbersColor: string) => void
 }
 
 export const useRaffleStore = create<RaffleStore>()(
@@ -27,9 +28,10 @@ export const useRaffleStore = create<RaffleStore>()(
       phone: '',
       winCondition: '',
       responsible: '',
-      primaryColor: 'bg-red-600',
-      secondaryColor: 'bg-blue-700',
-      textColor: 'bg-black',
+      backgroundColor: 'blue-700',
+      primaryColor: 'red-600',
+      textColor: 'black',
+      numbersColor: 'orange-600',
       setTitle: (title: string) => {
         set({ title })
       },
@@ -57,11 +59,14 @@ export const useRaffleStore = create<RaffleStore>()(
       setPrimaryColor: (primaryColor: string) => {
         set({ primaryColor })
       },
-      setSecondaryColor: (secondaryColor: string) => {
-        set({ secondaryColor })
+      setBackgroundColor: (backgroundColor: string) => {
+        set({ backgroundColor })
       },
       setTextColor: (textColor: string) => {
         set({ textColor })
+      },
+      setNumbersColor: (numbersColor: string) => {
+        set({ numbersColor })
       }
     }),
     {
