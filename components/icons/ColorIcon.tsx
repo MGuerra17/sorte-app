@@ -1,10 +1,11 @@
 import { type IconProps } from '@/interfaces/Icons'
 import { Box } from '@chakra-ui/react'
+import ColorIndicator from '../ColorIndicator'
 
 export default function ColorIcon({
-  width = 10,
-  height = 10,
-  colorClassName = 'blue-700'
+  width,
+  height,
+  colorClassName = 'current'
 }: IconProps) {
   return (
     <Box position='relative' paddingTop={1}>
@@ -22,15 +23,7 @@ export default function ColorIcon({
           />
         </g>
       </svg>
-      <Box
-        rounded={'full'}
-        width={2}
-        height={2}
-        position='absolute'
-        bottom={0}
-        right={0}
-        className={`bg-${colorClassName}`}
-      />
+      <ColorIndicator color={colorClassName} />
     </Box>
   )
 }

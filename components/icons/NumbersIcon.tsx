@@ -1,9 +1,10 @@
 import { type IconProps } from '@/interfaces/Icons'
 import { Box } from '@chakra-ui/react'
+import ColorIndicator from '../ColorIndicator'
 
 export default function NumbersIcon({
-  width = 10,
-  height = 10,
+  width,
+  height,
   colorClassName = 'blue-700'
 }: IconProps) {
   return (
@@ -33,15 +34,7 @@ export default function NumbersIcon({
           d='m9 12 1.683 1.683v0c.175.175.459.175.634 0v0L15 10'
         />
       </svg>
-      <Box
-        rounded={'full'}
-        width={2}
-        height={2}
-        position='absolute'
-        bottom={0}
-        right={0}
-        className={`bg-${colorClassName}`}
-      />
+      <ColorIndicator color={colorClassName} />
     </Box>
   )
 }
