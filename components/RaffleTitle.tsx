@@ -16,7 +16,7 @@ export default function RaffleTitle({
         display='inline-block'
         textAlign='center'
         fontWeight={700}
-        fontSize='30px'
+        fontSize='26px'
         paddingX={3}
         className={`bg-${backgroundColor}`}
       >
