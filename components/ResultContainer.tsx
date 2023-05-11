@@ -12,7 +12,8 @@ export default function ResultContainer({
       direction='column'
       width='full'
       backgroundColor={colorMode === 'light' ? 'gray.50' : '#161b25'}
-      maxHeight='100vh'
+      minHeight='100vh'
+      height='fit-content'
       paddingBottom={10}
     >
       {children}

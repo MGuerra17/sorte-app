@@ -1,6 +1,6 @@
 import { type IconProps } from '@/interfaces/Icons'
 
-export default function PrizeIcon({ width, height }: IconProps) {
+export default function NequiIcon({ width, height }: IconProps) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

@@ -1,10 +1,7 @@
 export const paymentMethods = [
   { value: 'nequi', label: 'Nequi' },
   { value: 'bancolombia', label: 'Bancolombia' },
-  { value: 'daviplata', label: 'Daviplata' },
-  { value: 'transferencia', label: 'Transferencia bancaria' },
-  { value: 'paypal', label: 'Paypal' },
-  { value: 'efectivo', label: 'Efectivo' }
+  { value: 'daviplata', label: 'Daviplata' }
 ]
 
 export const winConditions = [
@@ -20,7 +17,7 @@ export const colorList = [
   'black',
   'white',
   'red-600',
-  'orange-600',
+  'orange-400',
   'amber-400',
   'emerald-300',
   'green-500',
@@ -30,3 +27,5 @@ export const colorList = [
   'pink-300',
   'purple-600'
 ]
+
+export const numbers = Array(100)

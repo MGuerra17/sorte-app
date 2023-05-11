@@ -2,7 +2,8 @@ import { useRaffleStore } from '@/stores/raffleStore'
 import { DownloadIcon } from '@chakra-ui/icons'
 import { useColorMode } from '@chakra-ui/react'
 import { type RefObject } from 'react'
-import html2canvas from 'html2canvas'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { useScreenshot, createFileName } = require('use-react-screenshot')
 
 export default function DownloadButton({
   resRef
@@ -11,33 +12,22 @@ export default function DownloadButton({
 }) {
   const { title } = useRaffleStore()
   const { colorMode } = useColorMode()
+  const [, takeScreenshot] = useScreenshot()
 
-  const downloadImage = (imageDataUrl: string, filename: string) => {
+  const download = (image: string, { extension = 'png' } = {}) => {
     const a = document.createElement('a')
-    a.href = imageDataUrl
-    a.download = filename
-    document.body.appendChild(a)
+    const filename = title !== null && title !== '' ? title : 'rifa'
+    a.href = image
+    a.download = createFileName(extension, filename)
     a.click()
-    document.body.removeChild(a)
   }
-
-  const captureAndDownload = async (
-    componentRef: HTMLDivElement,
-    filename: string
-  ) => {
-    const canvas = await html2canvas(componentRef)
-    const image = canvas.toDataURL('image/png')
-    downloadImage(image, filename)
-  }
-
+  const downloadScreenshot = () => takeScreenshot(resRef.current).then(download)
   return (
     <button
       className={`bg-emerald-500 hover:bg-emerald-600 font-bold py-2 ${
         colorMode === 'light' ? 'text-white' : 'text-black'
       } px-4 rounded flex justify-center items-center gap-2`}
-      onClick={() =>
-        captureAndDownload(resRef?.current as HTMLDivElement, title ?? 'rifa')
-      }
+      onClick={downloadScreenshot}
     >
       <DownloadIcon />
       Descargar

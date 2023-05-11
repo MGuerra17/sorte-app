@@ -5,6 +5,9 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
+  corePlugins: {
+    preflight: false
+  },
   theme: {
     extend: {
       backgroundImage: {
@@ -19,7 +22,7 @@ module.exports = {
     'bg-black',
     'bg-white',
     'bg-red-600',
-    'bg-orange-600',
+    'bg-orange-400',
     'bg-amber-400',
     'bg-emerald-300',
     'bg-green-500',
@@ -31,7 +34,7 @@ module.exports = {
     'hover:shadow-black',
     'hover:shadow-white',
     'hover:shadow-red-600',
-    'hover:shadow-orange-600',
+    'hover:shadow-orange-400',
     'hover:shadow-amber-400',
     'hover:shadow-emerald-300',
     'hover:shadow-green-500',
@@ -43,7 +46,7 @@ module.exports = {
     'text-black',
     'text-white',
     'text-red-600',
-    'text-orange-600',
+    'text-orange-400',
     'text-amber-400',
     'text-emerald-300',
     'text-green-500',
@@ -56,7 +59,7 @@ module.exports = {
     'fill-black',
     'fill-white',
     'fill-red-600',
-    'fill-orange-600',
+    'fill-orange-400',
     'fill-amber-400',
     'fill-emerald-300',
     'fill-green-500',
@@ -64,6 +67,19 @@ module.exports = {
     'fill-blue-700',
     'fill-sky-300',
     'fill-pink-300',
-    'fill-purple-600'
+    'fill-purple-600',
+    'stroke-current',
+    'stroke-black',
+    'stroke-white',
+    'stroke-red-600',
+    'stroke-orange-400',
+    'stroke-amber-400',
+    'stroke-emerald-300',
+    'stroke-green-500',
+    'stroke-blue-950',
+    'stroke-blue-700',
+    'stroke-sky-300',
+    'stroke-pink-300',
+    'stroke-purple-600'
   ]
 }

@@ -1,20 +1,19 @@
 'use client'
 
-import { FormControl, FormLabel } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useRaffleStore } from '@/stores/raffleStore'
+import { FormControl, FormLabel, useColorMode } from '@chakra-ui/react'
 
-interface TextInputProps {
+interface DateInputProps {
   titulo: string
   required?: boolean
-  errorMessage?: string
 }
 
 export default function DateInput({
   titulo,
-  required = false,
-  errorMessage
-}: TextInputProps) {
-  const [value, setValue] = useState<Date | null>(new Date())
+  required = false
+}: DateInputProps) {
+  const { date, setDate } = useRaffleStore()
+  const { colorMode } = useColorMode()
 
   return (
     <FormControl isInvalid={false} className='w-full md:w-2/5'>
@@ -23,15 +22,15 @@ export default function DateInput({
         {required ? <span className='text-red-600'> *</span> : ''}
       </FormLabel>
       <input
-        value={value?.toISOString().split('T')[0] ?? ''}
+        value={date != null ? new Date(date).toISOString().slice(0, 10) : ''}
         onChange={(e) => {
-          setValue(e.target.valueAsDate)
+          setDate(e.target.valueAsDate)
         }}
-        className='bg-transparent outline outline-1 outline-gray-200 py-[0.8rem] px-[0.3rem] md:p-[0.4rem] mt-[0.1rem] w-full rounded-lg focus:outline-green-500 focus:outline-2 focus:outline-none'
+        className={`bg-transparent outline outline-1 ${
+          colorMode === 'light' ? 'outline-gray-200' : 'outline-[#3f444e]'
+        } py-[0.8rem] px-[0.3rem] md:p-[0.38rem] mt-[0.1rem] w-full rounded-md focus:outline-green-500 focus:outline-2 focus:outline-none`}
         type='date'
       />
-
-      {/* {false ? <FormErrorMessage>{errorMessage}</FormErrorMessage> : null} */}
     </FormControl>
   )
 }

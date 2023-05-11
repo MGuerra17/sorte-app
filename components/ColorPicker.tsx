@@ -19,6 +19,7 @@ export default function ColorPicker({
       className={`${
         colorMode === 'light' ? 'bg-gray-100' : 'bg-[#1a202c]'
       } inline-block p-3 rounded-md`}
+      zIndex={1000}
     >
       <Flex gap={2}>
         {colorList.slice(0, 6).map((color) => (

@@ -1,20 +1,24 @@
 import { create } from 'zustand'
+import { type Options, type Raffle } from '@/interfaces/Raffle'
+import { mountStoreDevtool } from 'simple-zustand-devtools'
 import { persist } from 'zustand/middleware'
-import { type Raffle } from '@/interfaces/Raffle'
 
 interface RaffleStore extends Raffle {
   setTitle: (title: string) => void
   setDescription: (description: string) => void
   setPrice: (price: string) => void
-  setPayment: (payment: string) => void
-  setDate: (date: string) => void
+  setImage: (image: string) => void
+  setDate: (date: Date | null) => void
   setPhone: (phone: string) => void
   setWinCondition: (winCondition: string) => void
   setResponsible: (responsible: string) => void
+  setPayment: (payment: Options) => void
   setBackgroundColor: (backgroundColor: string) => void
   setPrimaryColor: (primaryColor: string) => void
   setTextColor: (textColor: string) => void
   setNumbersColor: (numbersColor: string) => void
+  addSoldNumber: (number: string) => void
+  removeSoldNumber: (number: string) => void
 }
 
 export const useRaffleStore = create<RaffleStore>()(
@@ -23,15 +27,17 @@ export const useRaffleStore = create<RaffleStore>()(
       title: '',
       description: '',
       price: '',
-      payment: '',
-      date: '',
+      image: '',
+      date: null,
       phone: '',
       winCondition: '',
       responsible: '',
-      backgroundColor: 'blue-700',
-      primaryColor: 'red-600',
+      payment: [],
+      backgroundColor: 'white',
+      primaryColor: 'sky-300',
       textColor: 'black',
-      numbersColor: 'orange-600',
+      numbersColor: 'orange-400',
+      soldNumbers: [],
       setTitle: (title: string) => {
         set({ title })
       },
@@ -41,10 +47,10 @@ export const useRaffleStore = create<RaffleStore>()(
       setPrice: (price: string) => {
         set({ price })
       },
-      setPayment: (payment: string) => {
-        set({ payment })
+      setImage: (image: string) => {
+        set({ image })
       },
-      setDate: (date: string) => {
+      setDate: (date: Date | null) => {
         set({ date })
       },
       setPhone: (phone: string) => {
@@ -55,6 +61,9 @@ export const useRaffleStore = create<RaffleStore>()(
       },
       setResponsible: (responsible: string) => {
         set({ responsible })
+      },
+      setPayment: (payment: Options) => {
+        set({ payment })
       },
       setPrimaryColor: (primaryColor: string) => {
         set({ primaryColor })
@@ -67,10 +76,22 @@ export const useRaffleStore = create<RaffleStore>()(
       },
       setNumbersColor: (numbersColor: string) => {
         set({ numbersColor })
+      },
+      addSoldNumber: (number: string) => {
+        set((state) => ({ soldNumbers: [...state.soldNumbers, number] }))
+      },
+      removeSoldNumber: (number: string) => {
+        set((state) => ({
+          soldNumbers: state.soldNumbers.filter((n) => n !== number)
+        }))
       }
     }),
     {
-      name: 'raffle-storage'
+      name: 'raffle-store'
     }
   )
 )
+
+if (process.env.NODE_ENV === 'development') {
+  mountStoreDevtool('Store', useRaffleStore)
+}

@@ -1,6 +1,6 @@
+import { useRaffleStore } from '@/stores/raffleStore'
 import { FormControl, FormLabel, useColorMode } from '@chakra-ui/react'
-import { useState } from 'react'
-import Select, { type MultiValue, type SingleValue } from 'react-select'
+import Select from 'react-select'
 
 interface SelectOption {
   value: string
@@ -13,18 +13,16 @@ interface PaymentMethodsPickerProps {
   options: SelectOption[]
   required?: boolean
   multi?: boolean
-  errorMessage?: string
 }
-type Options = MultiValue<SelectOption> | SingleValue<SelectOption>
+
 export default function OptionsPicker({
   titulo,
   placeholder,
   options,
   required = false,
-  multi = false,
-  errorMessage
+  multi = false
 }: PaymentMethodsPickerProps) {
-  const [value, setValue] = useState<Options>([])
+  const { payment, setPayment } = useRaffleStore()
   const { colorMode } = useColorMode()
 
   return (
@@ -34,12 +32,14 @@ export default function OptionsPicker({
         {required ? <span className='text-red-600'> *</span> : ''}
       </FormLabel>
       <Select
-        value={value}
+        value={payment}
         isSearchable={false}
         styles={{
           control: (base, { isFocused }) => ({
             ...base,
-            outline: isFocused ? '2px solid #22c55e' : '1px solid #e5e7eb',
+            outline: isFocused
+              ? '2px solid #22c55e'
+              : `1px solid ${colorMode === 'light' ? '#e5e7eb' : '#3f444e'}`,
             boxShadow: 'none',
             border: 'none',
             backgroundColor: colorMode === 'light' ? '#fff' : '#1a202c',
@@ -73,12 +73,10 @@ export default function OptionsPicker({
         isMulti={multi}
         options={options}
         onChange={(e) => {
-          setValue(e)
+          setPayment(e)
         }}
         placeholder={placeholder}
       />
-
-      {/* {false ? <FormErrorMessage>{errorMessage}</FormErrorMessage> : null} */}
     </FormControl>
   )
 }
