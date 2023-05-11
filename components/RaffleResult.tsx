@@ -2,14 +2,12 @@ import { type RefObject } from 'react'
 import { useRaffleStore } from '@/stores/raffleStore'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import NumberTable from './NumberTable'
-import { Baloo_2 } from 'next/font/google'
 import { numbers } from '@/utils/constants'
 import RaffleTitle from './RaffleTitle'
 import RaffleInfo from './RaffleInfo'
 import PaymentMethods from './PaymentMethods'
 import useHydrated from '@/hooks/useHydrated'
-
-const baloo = Baloo_2({ subsets: ['latin'], weight: ['400', '700'] })
+import RaffleResultContainer from './RaffleResultContainer'
 
 export default function RaffleResult({
   resRef
@@ -24,7 +22,6 @@ export default function RaffleResult({
     phone,
     winCondition,
     responsible,
-    textColor,
     backgroundColor,
     primaryColor,
     numbersColor
@@ -32,12 +29,7 @@ export default function RaffleResult({
   const { isHydrated } = useHydrated()
   if (!isHydrated) return null
   return (
-    <Box
-      ref={resRef}
-      backgroundColor='white'
-      className={`transform scale-[.8] lg:scale-100 w-[400px] aspect-[1/1.5] mt-10 md:mt-0 shadow-lg text-${textColor} bg-${backgroundColor} ${baloo.className}`}
-      fontSize='10px'
-    >
+    <RaffleResultContainer resRef={resRef}>
       <RaffleTitle
         primaryColor={primaryColor}
         backgroundColor={backgroundColor}
@@ -70,6 +62,6 @@ export default function RaffleResult({
         <Text fontWeight={700}>No disponible</Text>
       </Flex>
       <PaymentMethods />
-    </Box>
+    </RaffleResultContainer>
   )
 }
