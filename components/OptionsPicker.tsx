@@ -29,8 +29,6 @@ export default function OptionsPicker({
   const { colorMode } = useColorMode()
   const { isHydrated } = useHydrated()
 
-  if (!isHydrated) return null
-
   return (
     <FormControl isInvalid={false}>
       <FormLabel>
@@ -38,8 +36,8 @@ export default function OptionsPicker({
         {required ? <span className='text-red-600'> *</span> : ''}
       </FormLabel>
       <Select
-        id={id}
-        value={payment}
+        id='select'
+        value={isHydrated ? payment : []}
         isSearchable={false}
         styles={{
           control: (base, { isFocused }) => ({
@@ -63,7 +61,7 @@ export default function OptionsPicker({
             padding: '0.5rem',
             backgroundColor: isFocused ? 'rgb(74,222,128,0.3)' : 'transparent'
           }),
-          multiValue: (base, { isFocused }) => ({
+          multiValue: (base) => ({
             ...base,
             padding: '0.3rem 0.5rem',
             backgroundColor: 'rgb(74,222,128,0.3)',

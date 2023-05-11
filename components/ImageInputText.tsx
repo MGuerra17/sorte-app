@@ -1,3 +1,5 @@
+import useHydrated from '@/hooks/useHydrated'
+
 export default function ImageInputText({
   isDragActive,
   image
@@ -5,6 +7,10 @@ export default function ImageInputText({
   isDragActive: boolean
   image: string
 }) {
+  const { isHydrated } = useHydrated()
+
+  if (!isHydrated) return null
+
   if (isDragActive) return <p className='text-center'>Soltar aqui</p>
   return (
     <>

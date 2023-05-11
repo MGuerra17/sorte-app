@@ -1,5 +1,6 @@
 'use client'
 
+import useHydrated from '@/hooks/useHydrated'
 import { type IconProps } from '@/interfaces/Icons'
 import { Box } from '@chakra-ui/react'
 
@@ -8,6 +9,8 @@ export default function BackgroundIcon({
   height = 10,
   colorClassName = 'blue-700'
 }: IconProps) {
+  const { isHydrated } = useHydrated()
+
   return (
     <Box position='relative' paddingTop={1}>
       <svg
@@ -26,7 +29,7 @@ export default function BackgroundIcon({
           className='fill-current'
         />
         <path
-          className={`fill-${colorClassName}`}
+          className={isHydrated ? `fill-${colorClassName}` : 'fill-current'}
           d='M55.19 59H16.81A3.81 3.81 0 0 1 13 55.19V16.81A3.81 3.81 0 0 1 16.81 13h38.38A3.81 3.81 0 0 1 59 16.81v38.38A3.81 3.81 0 0 1 55.19 59z'
         />
       </svg>
