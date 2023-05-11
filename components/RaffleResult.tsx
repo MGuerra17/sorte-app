@@ -7,6 +7,7 @@ import { numbers } from '@/utils/constants'
 import RaffleTitle from './RaffleTitle'
 import RaffleInfo from './RaffleInfo'
 import PaymentMethods from './PaymentMethods'
+import useHydrated from '@/hooks/useHydrated'
 
 const baloo = Baloo_2({ subsets: ['latin'], weight: ['400', '700'] })
 
@@ -28,7 +29,8 @@ export default function RaffleResult({
     primaryColor,
     numbersColor
   } = useRaffleStore()
-
+  const { isHydrated } = useHydrated()
+  if (!isHydrated) return null
   return (
     <Box
       ref={resRef}

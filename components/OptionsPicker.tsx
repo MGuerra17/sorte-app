@@ -1,3 +1,4 @@
+import useHydrated from '@/hooks/useHydrated'
 import { useRaffleStore } from '@/stores/raffleStore'
 import { FormControl, FormLabel, useColorMode } from '@chakra-ui/react'
 import Select from 'react-select'
@@ -8,6 +9,7 @@ interface SelectOption {
 }
 
 interface PaymentMethodsPickerProps {
+  id: string
   titulo: string
   placeholder: string
   options: SelectOption[]
@@ -16,6 +18,7 @@ interface PaymentMethodsPickerProps {
 }
 
 export default function OptionsPicker({
+  id,
   titulo,
   placeholder,
   options,
@@ -24,6 +27,9 @@ export default function OptionsPicker({
 }: PaymentMethodsPickerProps) {
   const { payment, setPayment } = useRaffleStore()
   const { colorMode } = useColorMode()
+  const { isHydrated } = useHydrated()
+
+  if (!isHydrated) return null
 
   return (
     <FormControl isInvalid={false}>
@@ -32,6 +38,7 @@ export default function OptionsPicker({
         {required ? <span className='text-red-600'> *</span> : ''}
       </FormLabel>
       <Select
+        id={id}
         value={payment}
         isSearchable={false}
         styles={{
@@ -45,7 +52,8 @@ export default function OptionsPicker({
             backgroundColor: colorMode === 'light' ? '#fff' : '#1a202c',
             color: colorMode === 'light' ? '#000' : '#fff',
             padding: '0.2rem 0',
-            borderRadius: '0.5rem'
+            borderRadius: '0.5rem',
+            placeholder: colorMode === 'light' ? '#000' : '#fff'
           }),
           menuList: (base, props) => ({
             ...base,
@@ -75,7 +83,7 @@ export default function OptionsPicker({
         onChange={(e) => {
           setPayment(e)
         }}
-        placeholder={placeholder}
+        placeholder={<p className='text-[#51555E]'>{placeholder}</p>}
       />
     </FormControl>
   )

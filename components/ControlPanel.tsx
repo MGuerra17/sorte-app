@@ -34,6 +34,7 @@ export default function ControlPanel() {
       />
       <Box className='flex flex-col md:flex-row gap-x-2 gap-y-5'>
         <TextInput
+          leftAddon='$'
           titulo='Precio por numero'
           placeholder='Ej. 10.000'
           value={raffle.price}
@@ -42,6 +43,7 @@ export default function ControlPanel() {
         <ImageInput title='Imagen' />
       </Box>
       <OptionsPicker
+        id='paymentMethodsPicker'
         titulo='Metodos de pago'
         placeholder='Seleccionar metodos de pago'
         options={paymentMethods}

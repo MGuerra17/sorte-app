@@ -8,7 +8,7 @@ export default function ImageInputText({
   if (isDragActive) return <p className='text-center'>Soltar aqui</p>
   return (
     <p className='text-center'>
-      {image === '' ? 'Seleccionar imagen' : 'Modificar imagen'}
+      {image === '' ? 'Seleccionar o arrastrar imagen' : 'Modificar imagen'}
     </p>
   )
 }
