@@ -17,7 +17,7 @@ export default function RaffleTextInfo({
       <span>{icon}</span>
       <Flex gap={0.5}>
         {title == null ? null : <Text fontWeight={700}>{title}:</Text>}
-        {text}
+        {text.charAt(0).toUpperCase() + text.slice(1).toLocaleLowerCase()}
       </Flex>
     </Flex>
   )
