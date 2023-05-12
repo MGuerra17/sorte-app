@@ -76,6 +76,7 @@ export default function RaffleInfo({
           }
           title='Responsable'
           text={responsible}
+          format={false}
         />
       </Flex>
       {image !== '' && (
