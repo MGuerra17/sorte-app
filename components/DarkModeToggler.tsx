@@ -7,7 +7,13 @@ export default function DarkModeToggler() {
   return (
     <button onClick={toggleColorMode}>
       {colorMode === 'light' ? (
-        <MoonIcon w={5} h={5} color='gray.400' />
+        <MoonIcon
+          w={5}
+          h={5}
+          color='gray.400'
+          _hover={{ color: 'gray.500' }}
+          className='hover:fill-[#718096]'
+        />
       ) : (
         <SunIcon w={5} h={5} />
       )}

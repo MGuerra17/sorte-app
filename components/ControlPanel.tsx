@@ -23,11 +23,13 @@ export default function ControlPanel() {
       <TextInput
         titulo='Titulo de la rifa'
         placeholder='Ej. Gran rifa de aniversario'
+        maxLength={30}
         value={raffle.title}
         setter={raffle.setTitle}
       />
       <TextInput
         titulo='Articulo a rifar'
+        maxLength={50}
         placeholder='Ej. Televisor de 50 pulgadas'
         value={raffle.description}
         setter={raffle.setDescription}
@@ -36,6 +38,8 @@ export default function ControlPanel() {
         <TextInput
           leftAddon='$'
           titulo='Precio por numero'
+          maxLength={9}
+          type='number'
           placeholder='Ej. 10.000'
           value={raffle.price}
           setter={raffle.setPrice}
@@ -54,6 +58,8 @@ export default function ControlPanel() {
         <TextInput
           titulo='Telefono'
           placeholder='Ej. 300 123 4567'
+          maxLength={10}
+          type='number'
           value={raffle.phone}
           setter={raffle.setPhone}
         />
@@ -61,11 +67,13 @@ export default function ControlPanel() {
       <TextInput
         titulo='Metodo de sorteo'
         placeholder='Ej. Ultimos 2 digitos de la loteria nacional'
+        maxLength={50}
         value={raffle.winCondition}
         setter={raffle.setWinCondition}
       />
       <TextInput
         titulo='Responsable de la rifa'
+        maxLength={50}
         placeholder='Ej. Pedro Perez'
         value={raffle.responsible}
         setter={raffle.setResponsible}
