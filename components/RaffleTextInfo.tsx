@@ -2,12 +2,14 @@ import { Flex, Text } from '@chakra-ui/react'
 
 interface RaffleTextInfoProps {
   icon: React.ReactNode
+  format?: boolean
   title?: string
   text?: string
 }
 
 export default function RaffleTextInfo({
   icon,
+  format = true,
   title,
   text
 }: RaffleTextInfoProps) {
@@ -17,7 +19,9 @@ export default function RaffleTextInfo({
       <span>{icon}</span>
       <Flex gap={0.5}>
         {title == null ? null : <Text fontWeight={700}>{title}:</Text>}
-        {text.charAt(0).toUpperCase() + text.slice(1).toLocaleLowerCase()}
+        {format
+          ? text.charAt(0).toUpperCase() + text.slice(1).toLocaleLowerCase()
+          : text}
       </Flex>
     </Flex>
   )
