@@ -8,6 +8,7 @@ import RaffleInfo from './RaffleInfo'
 import PaymentMethods from './PaymentMethods'
 import useHydrated from '@/hooks/useHydrated'
 import RaffleResultContainer from './RaffleResultContainer'
+import Loader from './Loader'
 
 export default function RaffleResult({
   resRef
@@ -27,7 +28,7 @@ export default function RaffleResult({
     numbersColor
   } = useRaffleStore()
   const { isHydrated } = useHydrated()
-  if (!isHydrated) return null
+  if (!isHydrated) return <Loader />
   return (
     <RaffleResultContainer resRef={resRef}>
       <RaffleTitle
