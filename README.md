@@ -1,5 +1,7 @@
 # SorteApp
 
+![Sorte-app preview](https://github.com/MGuerra17/sorte-app/blob/main/public/preview.png)
+
 SorteApp es una aplicación web que permite crear plantillas de rifas de manera fácil y rápida. Con esta aplicación, puedes crear una plantilla personalizada en cuestión de minutos y descargarla en formato PNG para compartirla con tus amigos y familiares.
 
 ## Características
