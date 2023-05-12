@@ -1,34 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SorteApp
 
-## Getting Started
+SorteApp es una aplicación web que permite crear plantillas de rifas de manera fácil y rápida. Con esta aplicación, puedes crear una plantilla personalizada en cuestión de minutos y descargarla en formato PNG para compartirla con tus amigos y familiares.
 
-First, run the development server:
+## Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Personalización de la plantilla: puedes agregar información relacionada a la rifa como título, artículo a rifar, precio por número, imagen del artículo, métodos de pago predefinidos, fecha de la rifa, teléfono de contacto, métodos de sorteo, responsable de la rifa, seleccionar los números vendidos y los colores a utilizar en la plantilla para mejorar la personalización.
+- Descarga de la plantilla: una vez que hayas completado todos los datos, puedes descargar la plantilla en formato PNG lista para ser compartida.
+- Soporte a Dark Mode: puedes usar la aplicación en modo oscuro para reducir la fatiga visual y mejorar la experiencia de usuario.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologías utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+La aplicación fue creada utilizando las siguientes tecnologías:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Zustand](https://github.com/pmndrs/zustand)
+- [Chakra UI](https://chakra-ui.com/)
 
-## Learn More
+## Cómo utilizar
 
-To learn more about Next.js, take a look at the following resources:
+1. Clona este repositorio en tu máquina local.
+2. Abre la terminal y navega hasta la carpeta raíz del proyecto.
+3. Instala las dependencias con el comando `npm install`.
+4. Inicia la aplicación con el comando `npm run dev`.
+5. Abre tu navegador web y accede a la URL `http://localhost:3000`.
+6. Crea tu plantilla de rifa personalizada y descárgala en formato PNG.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contribuciones
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Este software es de código abierto y cualquier contribución es bienvenida. Si deseas colaborar con el proyecto, por favor envía un Pull Request o crea un Issue en este repositorio.
 
-## Deploy on Vercel
+## Licencia
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este software está bajo la Licencia MIT. Puedes encontrar más información en el archivo `LICENSE` en la raíz del proyecto.
