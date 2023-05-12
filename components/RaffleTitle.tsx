@@ -1,5 +1,5 @@
 'use client'
-import { Center, Text } from '@chakra-ui/react'
+import { Box, Center, Text } from '@chakra-ui/react'
 
 export default function RaffleTitle({
   primaryColor,
@@ -12,16 +12,20 @@ export default function RaffleTitle({
 }) {
   return (
     <Center className={`bg-${primaryColor} h-2 my-5`} width='full'>
-      <Text
-        display='inline-block'
-        textAlign='center'
-        fontWeight={700}
-        fontSize='26px'
-        paddingX={3}
-        className={`bg-${backgroundColor}`}
-      >
-        {title}
-      </Text>
+      <Box overflow='hidden' paddingX={3} className={`bg-${backgroundColor}`}>
+        <Text
+          maxWidth='360px'
+          display='inline-block'
+          textAlign='center'
+          fontWeight={700}
+          fontSize='22px'
+          overflow='hidden'
+          whiteSpace='nowrap'
+          textOverflow='ellipsis'
+        >
+          {title.toLocaleUpperCase()}
+        </Text>
+      </Box>
     </Center>
   )
 }
