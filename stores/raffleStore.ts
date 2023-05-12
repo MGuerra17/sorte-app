@@ -45,6 +45,7 @@ export const useRaffleStore = create<RaffleStore>()(
         set({ description })
       },
       setPrice: (price: string) => {
+        if (price.length > 9) return
         set({ price })
       },
       setImage: (image: string) => {
@@ -54,6 +55,7 @@ export const useRaffleStore = create<RaffleStore>()(
         set({ date })
       },
       setPhone: (phone: string) => {
+        if (phone.length > 10) return
         set({ phone })
       },
       setWinCondition: (winCondition: string) => {
