@@ -2,8 +2,9 @@ import { create } from 'zustand'
 import { type Options, type Raffle } from '@/interfaces/Raffle'
 import { mountStoreDevtool } from 'simple-zustand-devtools'
 import { persist } from 'zustand/middleware'
+import { initialState } from '@/utils/globalState'
 
-interface RaffleStore extends Raffle {
+interface RaffleActions {
   setTitle: (title: string) => void
   setDescription: (description: string) => void
   setPrice: (price: string) => void
@@ -19,25 +20,13 @@ interface RaffleStore extends Raffle {
   setNumbersColor: (numbersColor: string) => void
   addSoldNumber: (number: string) => void
   removeSoldNumber: (number: string) => void
+  resetState: () => void
 }
 
-export const useRaffleStore = create<RaffleStore>()(
+export const useRaffleStore = create<Raffle & RaffleActions>()(
   persist(
     (set) => ({
-      title: '',
-      description: '',
-      price: '',
-      image: '',
-      date: null,
-      phone: '',
-      winCondition: '',
-      responsible: '',
-      payment: [],
-      backgroundColor: 'white',
-      primaryColor: 'sky-300',
-      textColor: 'black',
-      numbersColor: 'orange-400',
-      soldNumbers: [],
+      ...initialState,
       setTitle: (title: string) => {
         set({ title })
       },
@@ -86,6 +75,9 @@ export const useRaffleStore = create<RaffleStore>()(
         set((state) => ({
           soldNumbers: state.soldNumbers.filter((n) => n !== number)
         }))
+      },
+      resetState: () => {
+        set({ ...initialState, soldNumbers: [] })
       }
     }),
     {
