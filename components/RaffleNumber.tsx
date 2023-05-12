@@ -1,9 +1,7 @@
 import { useRaffleStore } from '@/stores/raffleStore'
 import { Box } from '@chakra-ui/react'
-import { useCallback, useEffect, useState } from 'react'
 
 export default function RaffleNumber({ number }: { number: string }) {
-  const [sold, setSold] = useState(false)
   const {
     backgroundColor,
     addSoldNumber,
@@ -11,15 +9,14 @@ export default function RaffleNumber({ number }: { number: string }) {
     soldNumbers,
     numbersColor
   } = useRaffleStore()
-  useEffect(() => {
-    if (soldNumbers.includes(number)) setSold(true)
-  }, [])
 
-  const handleClick = useCallback(() => {
-    setSold((prevState) => !prevState)
-    if (sold) removeSoldNumber(number)
-    addSoldNumber(number)
-  }, [])
+  const isSold = soldNumbers.includes(number)
+
+  const handleClick = () => {
+    if (isSold) removeSoldNumber(number)
+    else addSoldNumber(number)
+  }
+
   return (
     <Box
       width='full'
@@ -27,7 +24,7 @@ export default function RaffleNumber({ number }: { number: string }) {
       display='flex'
       justifyContent='center'
       alignItems='center'
-      className={sold ? `bg-${numbersColor}` : `bg-${backgroundColor}`}
+      className={isSold ? `bg-${numbersColor}` : `bg-${backgroundColor}`}
       onClick={handleClick}
       cursor='pointer'
     >
