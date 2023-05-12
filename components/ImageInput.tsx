@@ -27,14 +27,12 @@ export default function ImageInput({ title }: { title: string }) {
         accept={{ 'image/jpeg': ['.jpeg'], 'image/png': ['.png'] }}
       >
         {({ getRootProps, getInputProps }) => (
-          <section
-            className={`text-xs cursor-pointer transition-all outline-dashed outline-2 outline-gray-500 p-2 rounded-md ${
-              isDragActive ? 'bg-gray-500/20' : ''
-            }`}
-          >
+          <section>
             <div
               {...getRootProps()}
-              className='flex gap-x-1 justify-center items-center'
+              className={`flex gap-x-1 justify-center items-center text-xs cursor-pointer transition-all outline-dashed outline-2 outline-gray-500 p-2 rounded-md ${
+                isDragActive ? 'bg-gray-500/20' : ''
+              }`}
             >
               <input {...getInputProps()} />
               <ImageIcon width={20} height={20} />
