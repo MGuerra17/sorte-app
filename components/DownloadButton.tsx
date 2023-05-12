@@ -3,6 +3,7 @@ import { DownloadIcon } from '@chakra-ui/icons'
 import { useColorMode } from '@chakra-ui/react'
 import { type RefObject } from 'react'
 import html2canvas from 'html2canvas'
+import confetti from 'canvas-confetti'
 
 export default function DownloadButton({
   resRef
@@ -30,17 +31,22 @@ export default function DownloadButton({
     downloadImage(image, filename)
   }
 
+  const handleDownload = () => {
+    confetti()
+    captureAndDownload(resRef?.current as HTMLDivElement, title ?? 'rifa')
+  }
+
   return (
-    <button
-      className={`bg-emerald-500 hover:bg-emerald-600 font-bold py-2 ${
-        colorMode === 'light' ? 'text-white' : 'text-black'
-      } px-4 rounded flex justify-center items-center gap-2`}
-      onClick={() =>
-        captureAndDownload(resRef?.current as HTMLDivElement, title ?? 'rifa')
-      }
-    >
-      <DownloadIcon />
-      Descargar
-    </button>
+    <>
+      <button
+        className={`bg-emerald-500 hover:bg-emerald-600 font-bold py-2 ${
+          colorMode === 'light' ? 'text-white' : 'text-black'
+        } px-4 rounded flex justify-center items-center gap-2`}
+        onClick={handleDownload}
+      >
+        <DownloadIcon />
+        Descargar
+      </button>
+    </>
   )
 }
