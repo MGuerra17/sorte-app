@@ -9,25 +9,33 @@ import PhoneIcon from './icons/PhoneIcon'
 import ResponsibleIcon from './icons/ResponsibleIcon'
 import { formatDate } from '@/utils/dates'
 import { useRaffleStore } from '@/stores/raffleStore'
+import { shallow } from 'zustand/shallow'
 
-export default function RaffleInfo({
-  primaryColor,
-  description,
-  price,
-  date,
-  phone,
-  winCondition,
-  responsible
-}: {
-  primaryColor: string
-  description: string
-  price: string
-  date: Date | null
-  phone: string
-  winCondition: string
-  responsible: string
-}) {
-  const { image } = useRaffleStore()
+function useRaffleInfoStore() {
+  return useRaffleStore(state => ({
+    image: state.image,
+    description: state.description,
+    primaryColor: state.primaryColor,
+    price: state.price,
+    date: state.date,
+    phone: state.phone,
+    winCondition: state.winCondition,
+    responsible: state.responsible
+  }), shallow)
+}
+
+export default function RaffleInfo() {
+  const {
+    image,
+    description,
+    primaryColor,
+    price,
+    date,
+    phone,
+    winCondition,
+    responsible
+  } = useRaffleInfoStore()
+
   return (
     <Flex justify='space-between' paddingX={4} minHeight='92px'>
       <Flex direction='column' className='justify-start items-start'>

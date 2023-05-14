@@ -2,8 +2,16 @@ import { useRaffleStore } from '@/stores/raffleStore'
 import { Box } from '@chakra-ui/react'
 import { Baloo_2 } from 'next/font/google'
 import { type RefObject } from 'react'
+import { shallow } from 'zustand/shallow'
 
 const baloo = Baloo_2({ subsets: ['latin'], weight: ['400', '700'] })
+
+function useRaffleResultContainerStore() {
+  return useRaffleStore(state => ({
+    textColor: state.textColor,
+    backgroundColor: state.backgroundColor
+  }), shallow)
+}
 
 export default function RaffleResultContainer({
   children,
@@ -12,7 +20,7 @@ export default function RaffleResultContainer({
   children: React.ReactNode
   resRef: RefObject<HTMLDivElement>
 }) {
-  const { textColor, backgroundColor } = useRaffleStore()
+  const { textColor, backgroundColor } = useRaffleResultContainerStore()
   return (
     <Box
       ref={resRef}

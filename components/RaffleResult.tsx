@@ -15,36 +15,15 @@ export default function RaffleResult({
 }: {
   resRef: RefObject<HTMLDivElement>
 }) {
-  const {
-    title,
-    description,
-    price,
-    date,
-    phone,
-    winCondition,
-    responsible,
-    backgroundColor,
-    primaryColor,
-    numbersColor
-  } = useRaffleStore()
+  const numbersColor = useRaffleStore(state => state.numbersColor)
+
   const { isHydrated } = useHydrated()
   if (!isHydrated) return <Loader />
+
   return (
     <RaffleResultContainer resRef={resRef}>
-      <RaffleTitle
-        primaryColor={primaryColor}
-        backgroundColor={backgroundColor}
-        title={title}
-      />
-      <RaffleInfo
-        primaryColor={primaryColor}
-        description={description}
-        price={price}
-        date={date}
-        phone={phone}
-        winCondition={winCondition}
-        responsible={responsible}
-      />
+      <RaffleTitle />
+      <RaffleInfo />
       <NumberTable numbersList={numbers} />
       <Flex
         justify='end'

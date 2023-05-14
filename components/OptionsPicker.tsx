@@ -2,6 +2,14 @@ import useHydrated from '@/hooks/useHydrated'
 import { useRaffleStore } from '@/stores/raffleStore'
 import { FormControl, FormLabel, useColorMode } from '@chakra-ui/react'
 import Select from 'react-select'
+import { shallow } from 'zustand/shallow'
+
+function useRafflePaymentMethodsStore() {
+  return useRaffleStore(state => ({
+    payment: state.payment,
+    setPayment: state.setPayment
+  }), shallow)
+}
 
 interface SelectOption {
   value: string
@@ -25,7 +33,7 @@ export default function OptionsPicker({
   required = false,
   multi = false
 }: PaymentMethodsPickerProps) {
-  const { payment, setPayment } = useRaffleStore()
+  const { payment, setPayment } = useRafflePaymentMethodsStore()
   const { colorMode } = useColorMode()
   const { isHydrated } = useHydrated()
 

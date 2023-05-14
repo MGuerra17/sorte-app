@@ -4,10 +4,19 @@ import BancolombiaIcon from './icons/BancolombiaIcon'
 import DaviplataIcon from './icons/DaviplataIcon'
 import { type SelectOption } from '@/interfaces/Raffle'
 import { useRaffleStore } from '@/stores/raffleStore'
+import { shallow } from 'zustand/shallow'
+
+function useRafflePaymentMethodsStore() {
+  return useRaffleStore(state => ({
+    payment: state.payment
+  }), shallow)
+}
 
 export default function PaymentMethods() {
-  const { payment } = useRaffleStore()
+  const { payment } = useRafflePaymentMethodsStore()
+
   if ((payment as SelectOption[]).length < 1) return null
+
   return (
     <Flex
       gap={6}

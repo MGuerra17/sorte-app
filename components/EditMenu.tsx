@@ -5,6 +5,20 @@ import { useRaffleStore } from '@/stores/raffleStore'
 import FontIcon from './icons/FontIcon'
 import BackgroundIcon from './icons/BackgroundIcon'
 import NumbersIcon from './icons/NumbersIcon'
+import { shallow } from 'zustand/shallow'
+
+function useRaffleEditMenuStore() {
+  return useRaffleStore(state => ({
+    primaryColor: state.primaryColor,
+    backgroundColor: state.backgroundColor,
+    textColor: state.textColor,
+    numbersColor: state.numbersColor,
+    setPrimaryColor: state.setPrimaryColor,
+    setBackgroundColor: state.setBackgroundColor,
+    setTextColor: state.setTextColor,
+    setNumbersColor: state.setNumbersColor
+  }), shallow)
+}
 
 export default function EditMenu() {
   const {
@@ -16,7 +30,7 @@ export default function EditMenu() {
     setBackgroundColor,
     setTextColor,
     setNumbersColor
-  } = useRaffleStore()
+  } = useRaffleEditMenuStore()
   const { colorMode } = useColorMode()
 
   return (

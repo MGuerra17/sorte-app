@@ -1,5 +1,6 @@
 import useHydrated from '@/hooks/useHydrated'
 import { useRaffleStore } from '@/stores/raffleStore'
+import { shallow } from 'zustand/shallow'
 import {
   Button,
   Modal,
@@ -28,10 +29,26 @@ import {
 //   numbersColor: 'orange-400',
 //   soldNumbers: []
 
+function useRaffleResetStateStore() {
+  return useRaffleStore(state => ({
+    resetState: state.resetState,
+    title: state.title,
+    description: state.description,
+    price: state.price,
+    image: state.image,
+    date: state.date,
+    phone: state.phone,
+    winCondition: state.winCondition,
+    responsible: state.responsible,
+    payment: state.payment,
+    soldNumbers: state.soldNumbers
+  }), shallow)
+}
+
 export default function ResetRaffleButton() {
-  const { resetState } = useRaffleStore()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const {
+    resetState,
     title,
     description,
     price,
@@ -42,7 +59,7 @@ export default function ResetRaffleButton() {
     responsible,
     payment,
     soldNumbers
-  } = useRaffleStore()
+  } = useRaffleResetStateStore()
 
   const { isHydrated } = useHydrated()
 
