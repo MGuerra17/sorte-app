@@ -4,13 +4,20 @@ import { useColorMode } from '@chakra-ui/react'
 import { type RefObject } from 'react'
 import html2canvas from 'html2canvas'
 import confetti from 'canvas-confetti'
+import { shallow } from 'zustand/shallow'
+
+function useRaffleDownloadButtonStore() {
+  return useRaffleStore(state => ({
+    title: state.title
+  }), shallow)
+}
 
 export default function DownloadButton({
   resRef
 }: {
   resRef: RefObject<HTMLDivElement>
 }) {
-  const { title } = useRaffleStore()
+  const { title } = useRaffleDownloadButtonStore()
   const { colorMode } = useColorMode()
 
   const downloadImage = (imageDataUrl: string, filename: string) => {

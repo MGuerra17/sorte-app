@@ -2,6 +2,14 @@
 
 import { useRaffleStore } from '@/stores/raffleStore'
 import { FormControl, FormLabel, useColorMode } from '@chakra-ui/react'
+import { shallow } from 'zustand/shallow'
+
+function useRaffleDateInputStore() {
+  return useRaffleStore(state => ({
+    date: state.date,
+    setDate: state.setDate
+  }), shallow)
+}
 
 interface DateInputProps {
   titulo: string
@@ -12,7 +20,7 @@ export default function DateInput({
   titulo,
   required = false
 }: DateInputProps) {
-  const { date, setDate } = useRaffleStore()
+  const { date, setDate } = useRaffleDateInputStore()
   const { colorMode } = useColorMode()
 
   return (

@@ -4,10 +4,18 @@ import ImageIcon from './icons/ImageIcon'
 import { useState } from 'react'
 import { useRaffleStore } from '@/stores/raffleStore'
 import ImageInputText from './ImageInputText'
+import { shallow } from 'zustand/shallow'
+
+function useRaffleImageInputStore() {
+  return useRaffleStore(state => ({
+    image: state.image,
+    setImage: state.setImage
+  }), shallow)
+}
 
 export default function ImageInput({ title }: { title: string }) {
   const [isDragActive, setIsDragActive] = useState<boolean>(false)
-  const { image, setImage } = useRaffleStore()
+  const { image, setImage } = useRaffleImageInputStore()
   const { colorMode } = useColorMode()
 
   const uploadImage = (acceptedFiles: File[]) => {

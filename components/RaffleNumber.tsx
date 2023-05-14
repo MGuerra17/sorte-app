@@ -1,5 +1,16 @@
 import { useRaffleStore } from '@/stores/raffleStore'
 import { Box } from '@chakra-ui/react'
+import { shallow } from 'zustand/shallow'
+
+function useRaffleNumberStore() {
+  return useRaffleStore(state => ({
+    backgroundColor: state.backgroundColor,
+    addSoldNumber: state.addSoldNumber,
+    removeSoldNumber: state.removeSoldNumber,
+    soldNumbers: state.soldNumbers,
+    numbersColor: state.numbersColor
+  }), shallow)
+}
 
 export default function RaffleNumber({ number }: { number: string }) {
   const {
@@ -8,7 +19,7 @@ export default function RaffleNumber({ number }: { number: string }) {
     removeSoldNumber,
     soldNumbers,
     numbersColor
-  } = useRaffleStore()
+  } = useRaffleNumberStore()
 
   const isSold = soldNumbers.includes(number)
 
