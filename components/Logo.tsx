@@ -1,3 +1,3 @@
 export default function Logo() {
-  return <h1 className='text-2xl font-bold'>Logo</h1>
+  return <img src='/logo.svg' alt='Logo' width={50} height={50} />
 }
