@@ -5,11 +5,11 @@ export default function ImageInputText({
   image
 }: {
   isDragActive: boolean
-  image: string
+  image: boolean
 }) {
   const { isHydrated } = useHydrated()
 
-  if (!isHydrated || image === '') {
+  if (!isHydrated || !image) {
     return <p className='text-center'>Seleccionar imagen</p>
   }
   if (isDragActive) return <p className='text-center'>Soltar aqui</p>

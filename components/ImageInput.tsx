@@ -7,10 +7,13 @@ import ImageInputText from './ImageInputText'
 import { shallow } from 'zustand/shallow'
 
 function useRaffleImageInputStore() {
-  return useRaffleStore(state => ({
-    image: state.image,
-    setImage: state.setImage
-  }), shallow)
+  return useRaffleStore(
+    (state) => ({
+      image: state.image,
+      setImage: state.setImage
+    }),
+    shallow
+  )
 }
 
 export default function ImageInput({ title }: { title: string }) {
@@ -18,8 +21,12 @@ export default function ImageInput({ title }: { title: string }) {
   const { image, setImage } = useRaffleImageInputStore()
   const { colorMode } = useColorMode()
 
-  const uploadImage = (acceptedFiles: File[]) => {
-    setImage(URL.createObjectURL(acceptedFiles[0]))
+  const uploadImage = async (acceptedFiles: File[]) => {
+    const reader = new FileReader()
+    reader.onloadend = function () {
+      setImage(reader.result as string)
+    }
+    reader.readAsDataURL(acceptedFiles[0])
   }
 
   return (
@@ -46,7 +53,10 @@ export default function ImageInput({ title }: { title: string }) {
             >
               <input {...getInputProps()} />
               <ImageIcon width={20} height={20} />
-              <ImageInputText isDragActive={isDragActive} image={image} />
+              <ImageInputText
+                isDragActive={isDragActive}
+                image={image != null}
+              />
             </div>
           </section>
         )}

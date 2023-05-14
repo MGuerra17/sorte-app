@@ -10,18 +10,22 @@ import ResponsibleIcon from './icons/ResponsibleIcon'
 import { formatDate } from '@/utils/dates'
 import { useRaffleStore } from '@/stores/raffleStore'
 import { shallow } from 'zustand/shallow'
+import ImageResult from './ImageResult'
 
 function useRaffleInfoStore() {
-  return useRaffleStore(state => ({
-    image: state.image,
-    description: state.description,
-    primaryColor: state.primaryColor,
-    price: state.price,
-    date: state.date,
-    phone: state.phone,
-    winCondition: state.winCondition,
-    responsible: state.responsible
-  }), shallow)
+  return useRaffleStore(
+    (state) => ({
+      image: state.image,
+      description: state.description,
+      primaryColor: state.primaryColor,
+      price: state.price,
+      date: state.date,
+      phone: state.phone,
+      winCondition: state.winCondition,
+      responsible: state.responsible
+    }),
+    shallow
+  )
 }
 
 export default function RaffleInfo() {
@@ -87,9 +91,7 @@ export default function RaffleInfo() {
           format={false}
         />
       </Flex>
-      {image !== '' && (
-        <img src={image} width='25%' className='aspect-square object-contain' />
-      )}
+      <ImageResult image={image} />
     </Flex>
   )
 }
