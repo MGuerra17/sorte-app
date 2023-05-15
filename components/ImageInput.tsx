@@ -55,7 +55,7 @@ export default function ImageInput({ title }: { title: string }) {
               <ImageIcon width={20} height={20} />
               <ImageInputText
                 isDragActive={isDragActive}
-                image={image != null}
+                image={image !== ''}
               />
             </div>
           </section>
