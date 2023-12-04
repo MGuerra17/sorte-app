@@ -36,3 +36,5 @@ Este software es de código abierto y cualquier contribución es bienvenida. Si 
 ## Licencia
 
 Este software está bajo la Licencia MIT. Puedes encontrar más información en el archivo `LICENSE` en la raíz del proyecto.
+
+BY MG
